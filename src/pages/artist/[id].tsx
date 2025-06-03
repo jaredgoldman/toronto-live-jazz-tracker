@@ -5,6 +5,7 @@ import { api } from '~/utils/api'
 import ViewArtist from '~/components/ViewArtist'
 import Loading from '~/components/Loading'
 import { useMemo } from 'react'
+import { httpRequest } from '@trpc/client/dist/links/internals/httpUtils'
 
 export default function ViewArtistPage() {
     const router = useRouter()
@@ -20,11 +21,15 @@ export default function ViewArtistPage() {
         [getArtistQuery, getArtistEventsQuery]
     )
 
-    // TODO: add dynamic breadcrumbs
-    // const breadCrumbs = []
-
     return (
-        <RootLayout pageTitle="Toronto Live Jazz Tracker | View Artist">
+        <RootLayout
+            pageTitle="Toronto Live Jazz Tracker | View Artist"
+            breadcrumbs={{
+                href: '/events',
+                title: 'Events',
+                currentPageTitle: 'Artist'
+            }}
+        >
             <Flex justify="center" px={{ initial: '5', xs: '0' }} py="9">
                 {!isLoading &&
                 getArtistEventsQuery.data &&
