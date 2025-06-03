@@ -35,6 +35,8 @@ export default function ViewVenue({ venue }: Props) {
                     alt={venue.photoName ?? ''}
                     height={1500}
                     width={1500}
+                    priority={true}
+                    loading="eager"
                 />
             ) : null}
             {venue.description ? (

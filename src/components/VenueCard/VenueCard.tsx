@@ -16,9 +16,10 @@ import {
 
 interface Props {
     venue: Venue
+    priority?: boolean
 }
 
-export default function VenueCard({ venue }: Props) {
+export default function VenueCard({ venue, priority = false }: Props) {
     const { withAt, withoutAt } = processIGHandle(venue?.instagramHandle)
 
     return (
@@ -35,6 +36,8 @@ export default function VenueCard({ venue }: Props) {
                         objectFit="cover"
                         alt={`photo of ${venue.name}`}
                         src={venue.photoPath}
+                        priority={priority}
+                        loading={priority ? 'eager' : 'lazy'}
                     />
                 ) : null}
             </Flex>
