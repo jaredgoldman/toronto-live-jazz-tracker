@@ -1,10 +1,10 @@
 Sure, here’s an enhanced version of your README:
 
-# Jazz In Toronto
+# Toronto Live Jazz Tracker
 
 ## Introduction
 
-Welcome to the **Jazz In Toronto** project! This full-stack web application is dedicated to showcasing the vibrant jazz scene in Toronto. Whether you're a jazz enthusiast, an artist, or a venue owner, our platform allows you to explore, add, and manage jazz events happening around the city.
+Welcome to the **Toronto Live Jazz Tracker** project! This full-stack web application is dedicated to showcasing the vibrant jazz scene in Toronto. Whether you're a jazz enthusiast, an artist, or a venue owner, our platform allows you to explore, add, and manage jazz events happening around the city.
 
 ## Features
 

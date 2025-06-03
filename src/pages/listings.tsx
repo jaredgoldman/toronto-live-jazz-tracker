@@ -72,7 +72,7 @@ export default function Listings() {
 
     return (
         <RootLayout
-            pageTitle="Jazz In Toronto | Event Listings"
+            pageTitle="Toronto Live Jazz Tracker | Event Listings"
             calloutContent={
                 <Text>
                     Don’t see your gig listed in our below agenda and would like

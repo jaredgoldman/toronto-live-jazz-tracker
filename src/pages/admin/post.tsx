@@ -4,7 +4,7 @@ import PostGenerator from '~/components/Forms/PostGenerator'
 
 export default function AdminPost() {
     return (
-        <AdminLayout pageTitle="Jazz In Toronto | Admin - Post">
+        <AdminLayout pageTitle="Toronto Live Jazz Tracker | Admin - Post">
             <Heading align="center" size="9" mb="4">
                 Post
             </Heading>

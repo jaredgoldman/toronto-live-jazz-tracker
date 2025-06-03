@@ -1,11 +1,11 @@
 import RootLayout from '~/layouts/RootLayout'
 import Featured from '~/components/Featured'
-import { Flex, Heading, Link, Text } from '@radix-ui/themes'
+import { Flex, Heading, Text } from '@radix-ui/themes'
 import Image from 'next/image'
 
 export default function Home() {
     return (
-        <RootLayout pageTitle="Jazz In Toronto | Home">
+        <RootLayout pageTitle="Toronto Live Jazz Tracker | Home">
             <Flex
                 direction="column"
                 align="center"
@@ -18,7 +18,7 @@ export default function Home() {
                     weight="bold"
                     className="text-white"
                 >
-                    We are JazzInToronto
+                    Toronto Live Jazz Tracker
                 </Heading>
                 <Flex>
                     <Image
@@ -38,35 +38,6 @@ export default function Home() {
                     promoting, connecting, and nourishing Toronto’s live music
                     scene.
                 </Text>
-            </Flex>
-            <Flex
-                className="h-[50rem] bg-[var(--slate-1)]"
-                align="center"
-                justify="center"
-                direction={{ initial: 'column', md: 'row' }}
-                gap="9"
-            >
-                <Heading size="9" align="center" mb={{ initial: '6', xs: '0' }}>
-                    Follow us on our socials!
-                </Heading>
-                <Flex gap="9" justify="between">
-                    <Link href="https://www.facebook.com/jazzintoronto/ ">
-                        <Image
-                            src="/images/facebook.png"
-                            alt="facebook"
-                            width={130}
-                            height={130}
-                        />
-                    </Link>
-                    <Link href="https://www.instagram.com/jazzintoronto/ ">
-                        <Image
-                            src="/images/instagram.svg"
-                            alt="facebook"
-                            width={130}
-                            height={130}
-                        />
-                    </Link>
-                </Flex>
             </Flex>
             <Flex
                 justify="center"

@@ -30,9 +30,9 @@ export default {
             },
             backgroundImage: {
                 'hero-pattern-dark':
-                    "linear-gradient(to bottom, rgb(0, 0, 0, 0.25), var(--slate-1)), url('../../public/images/jit-no-logo.png')",
+                    "linear-gradient(to bottom, rgb(0, 0, 0, 0.25), var(--slate-1)), url('../../public/images/jazzhome.webp')",
                 'hero-pattern-dark-2':
-                    'linear-gradient(to bottom, var(--slate-1), var(--orange-2))',
+                    'linear-gradient(to bottom, var(--white-4), var(--orange-2))',
                 'gradient-overlay':
                     "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../public/images/jit-no-logo.png')"
             }

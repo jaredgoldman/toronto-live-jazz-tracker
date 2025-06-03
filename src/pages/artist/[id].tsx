@@ -24,7 +24,7 @@ export default function ViewArtistPage() {
     // const breadCrumbs = []
 
     return (
-        <RootLayout pageTitle="Jazz In Toronto | View Artist">
+        <RootLayout pageTitle="Toronto Live Jazz Tracker | View Artist">
             <Flex justify="center" px={{ initial: '5', xs: '0' }} py="9">
                 {!isLoading &&
                 getArtistEventsQuery.data &&

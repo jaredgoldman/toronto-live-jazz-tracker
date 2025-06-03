@@ -6,7 +6,7 @@ import { Text, Flex } from '@radix-ui/themes'
 export default function Venue() {
     return (
         <RootLayout
-            pageTitle="Jazz In Toronto | Submit your venue"
+            pageTitle="Toronto Live Jazz Tracker | Submit your venue"
             calloutContent={
                 <Text>
                     Submit your venue gig here and at least 24hrs in advance so

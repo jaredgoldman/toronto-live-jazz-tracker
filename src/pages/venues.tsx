@@ -23,7 +23,7 @@ export default function Venues() {
 
     return (
         <RootLayout
-            pageTitle="Jazz In Toronto | Venues"
+            pageTitle="Toronto Live Jazz Tracker | Venues"
             calloutContent={
                 <Text>
                     Don’t see your venue listed below?{' '}

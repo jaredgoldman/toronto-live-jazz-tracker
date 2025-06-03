@@ -3,7 +3,7 @@ import { Container, Heading, Text } from '@radix-ui/themes'
 
 export default function PrivacyPolicy() {
     return (
-        <RootLayout pageTitle="Jazz In Toronto | Privacy Policy">
+        <RootLayout pageTitle="Toronto Live Jazz Tracker | Privacy Policy">
             <Container p="6">
                 <Heading align="center" mb="6" size="9">
                     Privacy Policy
@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
                     Last updated: August 1st, 2023
                     <br />
                     <br />
-                    Jazz In Toronto ("us", "we", or "our") operates [your
+                    Toronto Live Jazz Tracker ("us", "we", or "our") operates [your
                     website or application URL] (the "Service"). This page
                     informs you of our policies regarding the collection, use,
                     and disclosure of Personal Information when you use our

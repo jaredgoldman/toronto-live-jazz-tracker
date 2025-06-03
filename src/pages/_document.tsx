@@ -6,7 +6,7 @@ export default function Document() {
     return (
         <Html className="dark">
             <Head>
-                <meta name="description" content="Jazz In Toronto" />
+                <meta name="description" content="Toronto Live Jazz Tracker" />
                 <script async src={src} />
                 <link rel="icon" href="/favicon.ico" />
                 <link

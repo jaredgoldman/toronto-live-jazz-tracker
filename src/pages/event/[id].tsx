@@ -11,7 +11,7 @@ export default function ViewEventPAge() {
     const getEventQuery = api.event.get.useQuery({ id }, { enabled: !!id })
 
     return (
-        <RootLayout pageTitle="Jazz In Toronto | View Event">
+        <RootLayout pageTitle="Toronto Live Jazz Tracker | View Event">
             <Flex justify="center" px={{ initial: '5', xs: '0' }} py="9">
                 {getEventQuery.data && <ViewEvent event={getEventQuery.data} />}
                 {getEventQuery.isLoading && <Loading />}

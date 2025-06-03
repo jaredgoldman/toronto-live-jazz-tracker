@@ -3,7 +3,7 @@ import RootLayout from '~/layouts/RootLayout'
 
 export default function Artists() {
     return (
-        <RootLayout pageTitle="Jazz In Toronto | Artists">
+        <RootLayout pageTitle="Toronto Live Jazz Tracker | Artists">
             <Flex width="100%" align="center" direction="column" px="6" py="9">
                 <Heading
                     size={{ initial: '8', xs: '9' }}
