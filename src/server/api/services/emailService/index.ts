@@ -61,13 +61,13 @@ export default class EmailService {
         await this.sendEmail(
             this.adminEmail,
             to,
-            `Jazz In Toronto: ${type} Pending Approval`,
+            `Toronto Live Jazz Tracker: ${type} Pending Approval`,
             `Your request to add ${type.toLowerCase()}: "${
                 item.name
             }" is pending approval. We'll send you an email once it's approved.
 
 Best Regards,
-Jazz In Toronto team
+Toronto Live Jazz Tracker team
 jazzintoronto.ca`
         )
     }
@@ -86,13 +86,13 @@ jazzintoronto.ca`
         await this.sendEmail(
             this.adminEmail,
             to,
-            `Jazz In Toronto: ${type} Approved!`,
+            `Toronto Live Jazz Tracker: ${type} Approved!`,
             `Your request to add ${type.toLowerCase()}: "${
                 item.name
             }" has been approved and now live on the site!
 
 Best Regards,
-Jazz In Toronto team
+Toronto Live Jazz Tracker team
 jazzintoronto.ca`
         )
     }

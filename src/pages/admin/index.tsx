@@ -9,7 +9,7 @@ export default function AdminHome() {
     const { data, isLoading } = api.data.getStats.useQuery()
 
     return (
-        <AdminLayout pageTitle="Jazz In Toronto | Admin - Bands">
+        <AdminLayout pageTitle="Toronto Live Jazz Tracker | Admin - Bands">
             <Heading mt="2" mb="9" align="center" size="9">
                 Dashboard
             </Heading>

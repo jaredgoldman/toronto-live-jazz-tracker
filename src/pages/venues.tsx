@@ -14,8 +14,14 @@ export default function Venues() {
             getAllVenuesQuery.data?.length
                 ? getAllVenuesQuery.data
                       .sort((a, b) => a.name.localeCompare(b.name))
-                      .map((venue) => {
-                          return <VenueCard key={venue.id} venue={venue} />
+                      .map((venue, index) => {
+                          return (
+                              <VenueCard
+                                  key={venue.id}
+                                  venue={venue}
+                                  priority={index < 3}
+                              />
+                          )
                       })
                 : [],
         [getAllVenuesQuery.data]
@@ -23,10 +29,10 @@ export default function Venues() {
 
     return (
         <RootLayout
-            pageTitle="Jazz In Toronto | Venues"
+            pageTitle="Toronto Live Jazz Tracker | Venues"
             calloutContent={
                 <Text>
-                    Don’t see your venue listed below?{' '}
+                    Don't see your venue listed below?{' '}
                     <Link href="/venue">
                         Submit a request to add your venue
                     </Link>

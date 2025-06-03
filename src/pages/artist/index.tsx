@@ -4,7 +4,7 @@ import { Flex } from '@radix-ui/themes'
 
 export default function Artist() {
     return (
-        <RootLayout pageTitle="Jazz In Toronto | Submit your artist">
+        <RootLayout pageTitle="Toronto Live Jazz Tracker | Submit your artist">
             <Flex justify="center" px={{ initial: '5', xs: '0' }} py="9">
                 <ArtistForm />
             </Flex>

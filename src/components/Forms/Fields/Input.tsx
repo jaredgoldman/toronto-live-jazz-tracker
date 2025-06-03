@@ -18,7 +18,7 @@ interface Props<T extends FieldValues> {
     error?: FieldError
     required?: boolean | string
     placeholder?: string
-    rules?: RegisterOptions
+    rules?: Omit<RegisterOptions<T, Path<T>>, 'required'>
 }
 
 export default function Input<T extends FieldValues>({
@@ -29,12 +29,15 @@ export default function Input<T extends FieldValues>({
     control,
     required = false,
     placeholder = '',
-    rules = {} // Default to an empty object
+    rules = {}
 }: Props<T>): JSX.Element {
     return (
         <Controller
             control={control}
-            rules={{ required, ...rules }} // Merge required with other rules
+            rules={{
+                ...rules,
+                required: required ? (typeof required === 'string' ? required : true) : false
+            }}
             name={name}
             render={({ field }) => (
                 <Form.Field name={name}>
