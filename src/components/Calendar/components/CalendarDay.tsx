@@ -30,10 +30,6 @@ export default function CalendarDay({ dailyEvents }: Props) {
         flatDailyEvents.length - 5 > 1 ? 's' : ''
     }`
 
-    console.log({
-        dailyEvents
-    })
-
     return (
         <Table.Cell justify="start">
             <Flex
@@ -45,8 +41,8 @@ export default function CalendarDay({ dailyEvents }: Props) {
                 className="min-h-[100px] min-w-[100px]"
             >
                 <Heading size="3">{dailyEvents.date.getDate()}</Heading>
-                <Flex direction="column" gap="2" align="start">
-                    {flatDailyEvents.slice(0, 5).map((event) => (
+                <Flex direction="column" gap="1" align="start">
+                    {flatDailyEvents.slice(0, 3).map((event) => (
                         <EventPopover
                             key={event.name ? event.name : event.artist.name}
                             event={event}
