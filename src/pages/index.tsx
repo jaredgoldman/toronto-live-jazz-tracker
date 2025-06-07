@@ -1,38 +1,23 @@
-import { useCallback, useState, useMemo } from 'react'
+import { useCallback, useState } from 'react'
 import RootLayout from '~/layouts/RootLayout'
-import { Flex, Text, Button, Heading, TextField } from '@radix-ui/themes'
+import { Flex, Text, Button, Heading, TextField, Box } from '@radix-ui/themes'
 import Link from '~/components/Link'
 import { EventsMap } from '~/components/EventsMap'
 import { DateTime } from 'luxon'
-import { formatTime } from '~/utils'
 import DailyListings from '~/components/DailyListings'
 import { Cross1Icon } from '@radix-ui/react-icons'
 import { IconButton } from '@radix-ui/themes'
 
-enum ListingType {
-    CALENDAR = 'CALENDAR',
-    DAILY_LISTINGS = 'DAILY_LISTINGS',
-    EVENT_MAP = 'EVENT_MAP'
-}
-
+/**
+ * Component to display the daily listings
+ */
 export default function Listings() {
     const defaultDate = DateTime.now()
         .startOf('day')
         .setZone('America/New_York')
         .toJSDate()
     const [selectedDate, setSelectedDate] = useState(defaultDate)
-    const [listingType, setListingType] = useState(ListingType.EVENT_MAP)
     const [showListingsOverlay, setShowListingsOverlay] = useState(false)
-    const onChangeListingType = (type: ListingType) => setListingType(type)
-    const listingTypeDuration = useMemo(
-        () =>
-            listingType === ListingType.CALENDAR ? { months: 1 } : { days: 1 },
-        [listingType]
-    )
-    const listingTypeDurationString = useMemo(
-        () => (listingType === ListingType.CALENDAR ? 'month' : 'day'),
-        [listingType]
-    )
 
     /**
      * Function to handle the next day button
@@ -42,11 +27,11 @@ export default function Listings() {
         () =>
             setSelectedDate(
                 DateTime.fromJSDate(selectedDate)
-                    .plus(listingTypeDuration)
+                    .plus({ day: 1 })
                     .startOf('day')
                     .toJSDate()
             ),
-        [selectedDate, listingTypeDuration]
+        [selectedDate]
     )
 
     /**
@@ -57,55 +42,55 @@ export default function Listings() {
         () =>
             setSelectedDate(
                 DateTime.fromJSDate(selectedDate)
-                    .minus(listingTypeDuration)
+                    .minus({ day: 1 })
                     .startOf('day')
                     .toJSDate()
             ),
-        [selectedDate, listingTypeDuration]
+        [selectedDate]
     )
 
+    /**
+     * Function to handle the date picker input change
+     * @param date
+     */
     const handleDatePickerChange = (date: string) => {
         setSelectedDate(DateTime.fromISO(date).startOf('day').toJSDate())
     }
 
-    const mapControls = (
-        <Flex
-            className="absolute left-1/2 top-4 z-20 flex -translate-x-1/2 flex-wrap gap-5 rounded bg-black/90 p-4 shadow"
-            align="center"
-        >
-            <Button
-                onClick={handlePrevious}
-            >{`Previous Day - ${DateTime.fromJSDate(selectedDate)
-                .minus({ day: 1 })
-                .toFormat('DD')}`}</Button>
-            <Text>{`Current Day - ${DateTime.fromJSDate(selectedDate).toFormat(
-                'DD'
-            )}`}</Text>
-            <Button onClick={handleNext}>{`Next Day - ${DateTime.fromJSDate(
-                selectedDate
-            )
-                .plus({ day: 1 })
-                .toFormat('DD')}`}</Button>
-            <TextField.Root>
-                <TextField.Input
-                    type="date"
-                    value={new Date(selectedDate).toISOString().split('T')[0]}
-                    onChange={(e) => handleDatePickerChange(e.target.value)}
-                    placeholder="Filter"
-                />
-            </TextField.Root>
-            <Button
-                variant={showListingsOverlay ? 'solid' : 'soft'}
-                onClick={() => setShowListingsOverlay((v) => !v)}
+    const MapControls = () => {
+        return (
+            <Flex
+                className="absolute left-1/2 top-4 z-20 flex -translate-x-1/2 flex-wrap gap-5 rounded bg-black/90 p-4 shadow"
+                align="center"
             >
-                {showListingsOverlay ? 'Hide Listings' : 'Show Listings'}
-            </Button>
-        </Flex>
-    )
+                <Button onClick={handlePrevious}>{`Previous Day`}</Button>
+                <Text>{`Current Day - ${DateTime.fromJSDate(
+                    selectedDate
+                ).toFormat('DD')}`}</Text>
+                <Button onClick={handleNext}>{`Next Day`}</Button>
+                <TextField.Root>
+                    <TextField.Input
+                        type="date"
+                        value={
+                            new Date(selectedDate).toISOString().split('T')[0]
+                        }
+                        onChange={(e) => handleDatePickerChange(e.target.value)}
+                        placeholder="Filter"
+                    />
+                </TextField.Root>
+                <Button
+                    variant={showListingsOverlay ? 'solid' : 'soft'}
+                    onClick={() => setShowListingsOverlay((v) => !v)}
+                >
+                    {showListingsOverlay ? 'Hide Listings' : 'Show Listings'}
+                </Button>
+            </Flex>
+        )
+    }
 
     return (
         <RootLayout
-            pageTitle="Toronto Live Jazz Tracker | Event Listings"
+            pageTitle="Live Music In Toronto | Event Listings"
             calloutContent={
                 <Text>
                     Don't see your gig listed in our below agenda and would like
@@ -121,24 +106,29 @@ export default function Listings() {
                 >
                     <EventsMap
                         selectedDate={selectedDate}
-                        controls={mapControls}
+                        controls={MapControls}
                     />
                     {showListingsOverlay && (
-                        <div className="absolute inset-0 z-30 flex flex-col items-center justify-center pointer-events-none">
-                            <div className="w-full max-w-5xl p-8 relative pointer-events-auto bg-white rounded-lg shadow-xl">
+                        <Box className="pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center">
+                            <Box className="pointer-events-auto relative w-full max-w-5xl rounded-lg bg-black p-8 shadow-xl">
                                 <IconButton
-                                    className="absolute top-2 right-2 z-40"
-                                    onClick={() => setShowListingsOverlay(false)}
+                                    className="absolute right-2 top-2 z-40"
+                                    onClick={() =>
+                                        setShowListingsOverlay(false)
+                                    }
                                     variant="ghost"
                                     aria-label="Close"
                                 >
                                     <Cross1Icon />
                                 </IconButton>
                                 <DailyListings selectedDate={selectedDate} />
-                            </div>
-                        </div>
+                            </Box>
+                        </Box>
                     )}
-                    <Heading className="absolute bottom-6 left-6 z-20 text-6xl font-bold text-black" size="9">
+                    <Heading
+                        className="absolute bottom-6 left-6 z-20 text-6xl font-bold text-black"
+                        size="9"
+                    >
                         Daily Listings
                     </Heading>
                 </Flex>

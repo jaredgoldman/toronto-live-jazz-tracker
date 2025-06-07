@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps'
 import { env } from '~/env.mjs'
 import { api } from '~/utils/api'
-import { Flex, Text } from '@radix-ui/themes'
+import { Flex } from '@radix-ui/themes'
 import { MapVenuePopover } from './components'
 import Loading from '../Loading'
 
@@ -13,7 +13,7 @@ import Loading from '../Loading'
  */
 type Props = {
     selectedDate: Date,
-    controls?: React.ReactNode
+    controls?: JSX.Element
 }
 
 /**
