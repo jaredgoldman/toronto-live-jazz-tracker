@@ -102,7 +102,7 @@ export default function Listings() {
             <Flex width="100%" align="center" direction="column">
                 <Flex
                     width="100%"
-                    className="relative mt-4 h-[calc(100vh-200px)]"
+                    className="relative h-[calc(100vh-200px)]"
                 >
                     <EventsMap
                         selectedDate={selectedDate}
