@@ -113,6 +113,9 @@ export default function Listings() {
                         selectedDate={selectedDate}
                         controls={mapControls}
                     />
+                    <Heading className="absolute bottom-6 left-6 z-20 text-6xl font-bold text-black" size="9">
+                        Daily Listings
+                    </Heading>
                 </Flex>
             </Flex>
         </RootLayout>
