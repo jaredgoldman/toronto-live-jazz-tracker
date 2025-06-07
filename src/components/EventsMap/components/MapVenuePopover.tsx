@@ -36,7 +36,7 @@ export function MapVenuePopover({
                 <Flex>{children}</Flex>
             </Popover.Trigger>
             <Popover.Content size="1">
-                <Flex direction="column" gap="2" className="xs: max-w-[72vw]">
+                <Flex direction="column" gap="2" className="max-w-[72vw] max-h-[70vh] overflow-y-auto">
                     <Flex align="center" justify="between" gap="4">
                         <Link href={`/venue/${venue.id}`}>
                             <Heading className="text-white hover:underline">

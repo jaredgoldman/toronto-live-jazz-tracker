@@ -16,7 +16,7 @@ export default function Header({ headerType }: Props): JSX.Element {
                 <Flex align="center" gap="4" justify="between" width="100%">
                     <Heading weight="bold">
                         <Link size="6" href="/">
-                           Toronto Live Jazz Tracker
+                           Toronto Live Music Tracker
                         </Link>
                     </Heading>
                     <Flex

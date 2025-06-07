@@ -60,17 +60,17 @@ export const EventsMap = ({ selectedDate, controls }: Props) => {
     }
 
     return (
-        <Flex direction="column" width="100%" className="h-full relative">
+        <Flex direction="column" width="100%" className="h-full relative" align="center" justify="center">
             {controls}
             <APIProvider apiKey={env.NEXT_PUBLIC_GOOGLE_API_KEY}>
                 {isLoading ? (
                     <Loading />
                 ) : (
                     <Map
-                        zoom={12}
+                        zoom={14}
                         center={{
                             lat: 43.66,
-                            lng: -79.4163
+                            lng: -79.39
                         }}
                         gestureHandling={'greedy'}
                         disableDefaultUI={true}

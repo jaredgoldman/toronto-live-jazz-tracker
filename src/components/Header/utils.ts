@@ -46,10 +46,6 @@ export const navLinks = {
             href: '/'
         },
         {
-            href: '/listings',
-            title: 'Listings'
-        },
-        {
             href: '/venues',
             title: 'Venues'
         },
