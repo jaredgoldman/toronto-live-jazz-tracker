@@ -9,9 +9,11 @@ import Loading from '../Loading'
 /**
  * Props for the EventsMap component
  * @param selectedDate - The date selected by the user
+ * @param controls - Optional controls to render above the map
  */
 type Props = {
-    selectedDate: Date
+    selectedDate: Date,
+    controls?: React.ReactNode
 }
 
 /**
@@ -19,7 +21,7 @@ type Props = {
  * the modal with the events of the selected venue
  * @param {Props}-
  */
-export const EventsMap = ({ selectedDate }: Props) => {
+export const EventsMap = ({ selectedDate, controls }: Props) => {
     const { data, isLoading } = api.event.getAllByDayByVenue.useQuery({
         date: selectedDate
     })
@@ -58,10 +60,8 @@ export const EventsMap = ({ selectedDate }: Props) => {
     }
 
     return (
-        <Flex direction="column" width="100%">
-            <Text size="4" mb="1">
-                Click a marker to see the respective venues events
-            </Text>
+        <Flex direction="column" width="100%" className="h-full relative">
+            {controls}
             <APIProvider apiKey={env.NEXT_PUBLIC_GOOGLE_API_KEY}>
                 {isLoading ? (
                     <Loading />
@@ -76,6 +76,7 @@ export const EventsMap = ({ selectedDate }: Props) => {
                         disableDefaultUI={true}
                         zoomControl={true}
                         clickableIcons={false}
+                        className="w-full h-full"
                     >
                         {data?.map(({ venue, events }) => (
                             <Flex pl="2" key={venue.id}>

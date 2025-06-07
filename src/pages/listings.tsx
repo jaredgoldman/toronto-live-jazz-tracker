@@ -1,7 +1,5 @@
 import { useCallback, useState, useMemo } from 'react'
 import RootLayout from '~/layouts/RootLayout'
-import DailyListings from '~/components/DailyListings/'
-import Calendar from '~/components/Calendar'
 import { Flex, Text, Button, Heading, TextField } from '@radix-ui/themes'
 import Link from '~/components/Link'
 import { EventsMap } from '~/components/EventsMap'
@@ -66,137 +64,55 @@ export default function Listings() {
         setSelectedDate(DateTime.fromISO(date).startOf('day').toJSDate())
     }
 
-    const headingDate = formatTime(selectedDate, 'EEEE, MMMM dd, yyyy')
-
-    const calendarHeadingDate = formatTime(selectedDate, 'MMMM yyyy')
+    const mapControls = (
+        <Flex
+            className="absolute left-1/2 top-4 z-20 flex -translate-x-1/2 flex-wrap gap-5 rounded bg-black/90 p-4 shadow"
+            align="center"
+        >
+            <Button
+                onClick={handlePrevious}
+            >{`Previous Day - ${DateTime.fromJSDate(selectedDate)
+                .minus({ day: 1 })
+                .toFormat('DD')}`}</Button>
+            <Text>{`Current Day - ${DateTime.fromJSDate(selectedDate).toFormat(
+                'DD'
+            )}`}</Text>
+            <Button onClick={handleNext}>{`Next Day - ${DateTime.fromJSDate(
+                selectedDate
+            )
+                .plus({ day: 1 })
+                .toFormat('DD')}`}</Button>
+            <TextField.Root>
+                <TextField.Input
+                    type="date"
+                    value={new Date(selectedDate).toISOString().split('T')[0]}
+                    onChange={(e) => handleDatePickerChange(e.target.value)}
+                    placeholder="Filter"
+                />
+            </TextField.Root>
+        </Flex>
+    )
 
     return (
         <RootLayout
             pageTitle="Toronto Live Jazz Tracker | Event Listings"
             calloutContent={
                 <Text>
-                    Don’t see your gig listed in our below agenda and would like
+                    Don't see your gig listed in our below agenda and would like
                     to be added? Submit a{' '}
                     <Link href="/event">request to join our listings!</Link>
                 </Text>
             }
         >
-            <Flex width="100%" align="center" direction="column" px="6" py="9">
-                <Flex direction="column" width="100%" className="max-w-[65rem]">
-                    <Heading
-                        size={{ initial: '8', xs: '9' }}
-                        align={{ initial: 'center', xs: 'left' }}
-                        mb="6"
-                    >
-                        Daily Listings
-                    </Heading>
-                    <Flex
-                        mb="5"
-                        gap="3"
-                        wrap="wrap"
-                        justify={{ initial: 'center', xs: 'start' }}
-                    >
-                        <Button
-                            onClick={handlePrevious}
-                        >{`Previous ${listingTypeDurationString}`}</Button>
-                        <Button
-                            onClick={handleNext}
-                        >{`Next ${listingTypeDurationString}`}</Button>
-                        <Button
-                            variant="soft"
-                            onClick={() =>
-                                onChangeListingType(ListingType.CALENDAR)
-                            }
-                            disabled={listingType === ListingType.CALENDAR}
-                        >
-                            View in Calendar
-                        </Button>
-                        <Button
-                            variant="soft"
-                            onClick={() =>
-                                onChangeListingType(ListingType.DAILY_LISTINGS)
-                            }
-                            disabled={
-                                listingType === ListingType.DAILY_LISTINGS
-                            }
-                        >
-                            View Listings
-                        </Button>
-                        <Button
-                            variant="soft"
-                            onClick={() =>
-                                onChangeListingType(ListingType.EVENT_MAP)
-                            }
-                            disabled={listingType === ListingType.EVENT_MAP}
-                        >
-                            View Event Map
-                        </Button>
-                        <TextField.Root>
-                            <TextField.Input
-                                type="date"
-                                value={
-                                    new Date(selectedDate)
-                                        .toISOString()
-                                        .split('T')[0]
-                                }
-                                onChange={(e) =>
-                                    handleDatePickerChange(e.target.value)
-                                }
-                                placeholder="Filter"
-                            />
-                        </TextField.Root>
-                    </Flex>
-                    {listingType !== ListingType.CALENDAR ? (
-                        <Heading
-                            size={{ initial: '3', xs: '5' }}
-                            align={{ initial: 'center', xs: 'left' }}
-                            mb="5"
-                        >{`Events on ${headingDate} in Toronto, Ontario`}</Heading>
-                    ) : (
-                        <Heading
-                            size={{ initial: '3', xs: '5' }}
-                            align={{ initial: 'center', xs: 'left' }}
-                            mb="5"
-                        >
-                            {`Events for ${calendarHeadingDate}`}
-                        </Heading>
-                    )}
-                </Flex>
-                {listingType === ListingType.DAILY_LISTINGS && (
-                    <Flex width="100%" className="max-w-[65rem]" mb="9">
-                        <DailyListings selectedDate={selectedDate} />
-                    </Flex>
-                )}
-                {listingType === ListingType.CALENDAR && (
-                    <Flex width="100%" className="max-w-[65rem]" mb="9">
-                        <Calendar
-                            selectedDate={selectedDate}
-                            setSelectedDate={setSelectedDate}
-                        />
-                    </Flex>
-                )}
-                {listingType === ListingType.EVENT_MAP && (
-                    <Flex
-                        width="100%"
-                        className="h-[500px] max-w-[65rem]"
-                        mb="9"
-                    >
-                        <EventsMap selectedDate={selectedDate} />
-                    </Flex>
-                )}
-                <Flex direction="column" gap="4" className="max-w-[65rem]">
-                    <Heading>Disclaimer</Heading>
-                    <Text>
-                        Please note that all event dates and times listed on our
-                        website are subject to change without prior notice.
-                        While we strive to provide the most accurate and
-                        up-to-date information, event organizers may alter
-                        schedules at their discretion. We recommend verifying
-                        the details with the event organizers or official event
-                        websites before making any plans. Our site cannot be
-                        held responsible for any inconvenience or losses caused
-                        by changes or cancellations of events.
-                    </Text>
+            <Flex width="100%" align="center" direction="column">
+                <Flex
+                    width="100%"
+                    className="relative mt-4 h-[calc(100vh-200px)]"
+                >
+                    <EventsMap
+                        selectedDate={selectedDate}
+                        controls={mapControls}
+                    />
                 </Flex>
             </Flex>
         </RootLayout>
