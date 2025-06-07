@@ -57,16 +57,18 @@ export default function Listings() {
         setSelectedDate(DateTime.fromISO(date).startOf('day').toJSDate())
     }
 
-    const MapControls = () => {
+    /**
+     * Function to handle the map controls
+     * @returns void
+     */
+    function MapControls() {
         return (
             <Flex
-                className="absolute left-1/2 top-4 z-20 flex -translate-x-1/2 flex-wrap gap-5 rounded bg-black/90 p-4 shadow"
+                className="absolute right-4 top-4 z-20 flex flex-wrap gap-5 rounded bg-black/90 p-4 shadow"
                 align="center"
             >
                 <Button onClick={handlePrevious}>{`Previous Day`}</Button>
-                <Text>{`Current Day - ${DateTime.fromJSDate(
-                    selectedDate
-                ).toFormat('DD')}`}</Text>
+                <Text>{DateTime.fromJSDate(selectedDate).toFormat('DD')}</Text>
                 <Button onClick={handleNext}>{`Next Day`}</Button>
                 <TextField.Root>
                     <TextField.Input
@@ -100,13 +102,10 @@ export default function Listings() {
             }
         >
             <Flex width="100%" align="center" direction="column">
-                <Flex
-                    width="100%"
-                    className="relative h-[calc(100vh-200px)]"
-                >
+                <Flex width="100%" className="relative h-[calc(100vh-200px)]">
                     <EventsMap
                         selectedDate={selectedDate}
-                        controls={MapControls}
+                        controls={MapControls()}
                     />
                     {showListingsOverlay && (
                         <Box className="pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center">
