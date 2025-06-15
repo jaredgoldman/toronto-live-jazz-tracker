@@ -64,7 +64,7 @@ export default function Listings() {
     function MapControls() {
         return (
             <Flex
-                className="absolute right-4 top-4 z-20 flex flex-wrap gap-5 rounded bg-black/90 p-4 shadow"
+                className="flex flex-wrap gap-5 rounded bg-black/90 p-4 shadow items-center justify-center mx-auto static md:absolute md:right-4 md:top-4 md:mx-0 md:justify-start z-20"
                 align="center"
             >
                 <Button onClick={handlePrevious}>{`Previous Day`}</Button>
@@ -125,7 +125,7 @@ export default function Listings() {
                         </Box>
                     )}
                     <Heading
-                        className="absolute bottom-6 left-6 z-20 text-6xl font-bold text-black"
+                        className="hidden md:block absolute bottom-6 left-6 z-20 text-6xl font-bold text-black"
                         size="9"
                     >
                         Daily Listings
